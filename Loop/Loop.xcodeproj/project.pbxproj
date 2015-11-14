@@ -28,6 +28,10 @@
 		05D43B861BF724C1003E98D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D43B851BF724C1003E98D9 /* Foundation.framework */; };
 		05D43B881BF724C9003E98D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D43B871BF724C9003E98D9 /* CoreGraphics.framework */; };
 		05D43B8A1BF724D0003E98D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D43B891BF724D0003E98D9 /* UIKit.framework */; };
+		1D2BFE931BF738EF0076BC5E /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D2BFE911BF738EF0076BC5E /* TextCell.m */; };
+		1D2BFE941BF738EF0076BC5E /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D2BFE921BF738EF0076BC5E /* TextCell.xib */; };
+		1D2BFE981BF739060076BC5E /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D2BFE961BF739060076BC5E /* ImageCell.m */; };
+		1D2BFE991BF739060076BC5E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D2BFE971BF739060076BC5E /* ImageCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +81,12 @@
 		05D43B851BF724C1003E98D9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		05D43B871BF724C9003E98D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		05D43B891BF724D0003E98D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1D2BFE901BF738EF0076BC5E /* TextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		1D2BFE911BF738EF0076BC5E /* TextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
+		1D2BFE921BF738EF0076BC5E /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
+		1D2BFE951BF739060076BC5E /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		1D2BFE961BF739060076BC5E /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		1D2BFE971BF739060076BC5E /* ImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +160,12 @@
 				05D43B4C1BF722BC003E98D9 /* LaunchScreen.storyboard */,
 				05D43B4F1BF722BC003E98D9 /* Info.plist */,
 				05D43B3E1BF722BC003E98D9 /* Supporting Files */,
+				1D2BFE901BF738EF0076BC5E /* TextCell.h */,
+				1D2BFE911BF738EF0076BC5E /* TextCell.m */,
+				1D2BFE921BF738EF0076BC5E /* TextCell.xib */,
+				1D2BFE951BF739060076BC5E /* ImageCell.h */,
+				1D2BFE961BF739060076BC5E /* ImageCell.m */,
+				1D2BFE971BF739060076BC5E /* ImageCell.xib */,
 			);
 			path = Loop;
 			sourceTree = "<group>";
@@ -305,6 +321,8 @@
 			files = (
 				05D43B4E1BF722BC003E98D9 /* LaunchScreen.storyboard in Resources */,
 				05D43B4B1BF722BC003E98D9 /* Assets.xcassets in Resources */,
+				1D2BFE941BF738EF0076BC5E /* TextCell.xib in Resources */,
+				1D2BFE991BF739060076BC5E /* ImageCell.xib in Resources */,
 				05D43B491BF722BC003E98D9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +349,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05D43B461BF722BC003E98D9 /* ViewController.m in Sources */,
+				1D2BFE981BF739060076BC5E /* ImageCell.m in Sources */,
+				1D2BFE931BF738EF0076BC5E /* TextCell.m in Sources */,
 				05D43B431BF722BC003E98D9 /* AppDelegate.m in Sources */,
 				05D43B401BF722BC003E98D9 /* main.m in Sources */,
 			);
@@ -564,6 +584,7 @@
 				05D43B6A1BF722BC003E98D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05D43B6B1BF722BC003E98D9 /* Build configuration list for PBXNativeTarget "LoopTests" */ = {
 			isa = XCConfigurationList;
@@ -572,6 +593,7 @@
 				05D43B6D1BF722BC003E98D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		05D43B6E1BF722BC003E98D9 /* Build configuration list for PBXNativeTarget "LoopUITests" */ = {
 			isa = XCConfigurationList;
@@ -580,6 +602,7 @@
 				05D43B701BF722BC003E98D9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
