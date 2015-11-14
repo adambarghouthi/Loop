@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
-    self.tableView.contentInset = UIEdgeInsetsMake(-35.5f, 0.0f, 0.0f, 0.0f);
+    self.tableView.contentInset = UIEdgeInsetsMake(-27.5f, 0.0f, 0.0f, 0.0f);
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = [UIScreen mainScreen].bounds.size.height/9;

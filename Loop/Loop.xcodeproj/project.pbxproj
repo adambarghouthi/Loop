@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05B084151BF7ADBC00B01E79 /* textView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B084141BF7ADBC00B01E79 /* textView.m */; };
 		05D43B401BF722BC003E98D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D43B3F1BF722BC003E98D9 /* main.m */; };
 		05D43B431BF722BC003E98D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D43B421BF722BC003E98D9 /* AppDelegate.m */; };
 		05D43B461BF722BC003E98D9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D43B451BF722BC003E98D9 /* ViewController.m */; };
@@ -50,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05B084131BF7ADBC00B01E79 /* textView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = textView.h; sourceTree = "<group>"; };
+		05B084141BF7ADBC00B01E79 /* textView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = textView.m; sourceTree = "<group>"; };
 		05D43B3B1BF722BC003E98D9 /* Loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05D43B3F1BF722BC003E98D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		05D43B411BF722BC003E98D9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -123,6 +126,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05B0840D1BF7AD2000B01E79 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1D2BFE901BF738EF0076BC5E /* TextCell.h */,
+				1D2BFE911BF738EF0076BC5E /* TextCell.m */,
+				1D2BFE951BF739060076BC5E /* ImageCell.h */,
+				1D2BFE961BF739060076BC5E /* ImageCell.m */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		05B0840E1BF7AD2700B01E79 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05B084131BF7ADBC00B01E79 /* textView.h */,
+				05B084141BF7ADBC00B01E79 /* textView.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		05D43B321BF722BC003E98D9 = {
 			isa = PBXGroup;
 			children = (
@@ -156,10 +179,8 @@
 				05D43B4C1BF722BC003E98D9 /* LaunchScreen.storyboard */,
 				05D43B4F1BF722BC003E98D9 /* Info.plist */,
 				05D43B3E1BF722BC003E98D9 /* Supporting Files */,
-				1D2BFE901BF738EF0076BC5E /* TextCell.h */,
-				1D2BFE911BF738EF0076BC5E /* TextCell.m */,
-				1D2BFE951BF739060076BC5E /* ImageCell.h */,
-				1D2BFE961BF739060076BC5E /* ImageCell.m */,
+				05B0840E1BF7AD2700B01E79 /* Models */,
+				05B0840D1BF7AD2000B01E79 /* Custom Cells */,
 			);
 			path = Loop;
 			sourceTree = "<group>";
@@ -343,6 +364,7 @@
 				05D43B461BF722BC003E98D9 /* ViewController.m in Sources */,
 				1D2BFE981BF739060076BC5E /* ImageCell.m in Sources */,
 				1D2BFE931BF738EF0076BC5E /* TextCell.m in Sources */,
+				05B084151BF7ADBC00B01E79 /* textView.m in Sources */,
 				05D43B431BF722BC003E98D9 /* AppDelegate.m in Sources */,
 				05D43B401BF722BC003E98D9 /* main.m in Sources */,
 			);
