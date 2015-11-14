@@ -11,4 +11,5 @@
 @interface TextCell : UITableViewCell
 @property (nonatomic,weak) IBOutlet UILabel* contentField;
 @property (nonatomic,weak) IBOutlet UIImageView* logoImage;
+
 @end
