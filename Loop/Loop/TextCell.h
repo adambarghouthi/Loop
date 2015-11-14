@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface TextCell : UITableViewCell
-@property (nonatomic,weak) IBOutlet UILabel* contentField;
-@property (nonatomic,weak) IBOutlet UIImageView* logoImage;
+
+@property (nonatomic, strong) UILabel *contentField;
+@property (nonatomic, strong) UIImageView *logoImage;
+@property (nonatomic, strong) UIView *view;
 
 @end

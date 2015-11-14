@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TextCell.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -18,9 +19,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
+    self.tableView.contentInset = UIEdgeInsetsMake(-35.5f, 0.0f, 0.0f, 0.0f);
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = [UIScreen mainScreen].bounds.size.height/9;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    
+    [self.tableView registerClass:[TextCell class] forCellReuseIdentifier:@"textCell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,14 +37,28 @@
 
 #pragma mark - Table view delegate
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [UIScreen mainScreen].bounds.size.height/9;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    TextCell *cell = (TextCell *)[tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = [UIColor clearColor];
+    cell.contentView.backgroundColor = [UIColor clearColor];
+    [cell.logoImage setImage:[UIImage imageNamed:@"adam"]];
+    cell.contentField.text = @"News here.asdasdsaasd asdasdasd asda sd asdsa dasas d asd ";
     
-    return 0;
+    return cell;
 }
 
 @end
