@@ -21,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+//    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+//    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+//    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) style:UITableViewStyleGrouped];
     self.tableView.contentInset = UIEdgeInsetsMake(-27.5f, 0.0f, 0.0f, 0.0f);
     self.tableView.delegate = self;
