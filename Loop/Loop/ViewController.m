@@ -7,12 +7,16 @@
 //
 
 #import "ViewController.h"
+<<<<<<< HEAD
 #import "TextCell.h"
+=======
+#import <Firebase/Firebase.h>
+>>>>>>> origin/remo
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
-
+@property (strong, nonatomic) Firebase *myRootRef;
 @end
 
 @implementation ViewController
@@ -27,12 +31,29 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
     
+<<<<<<< HEAD
     [self.tableView registerClass:[TextCell class] forCellReuseIdentifier:@"textCell"];
+=======
+    _myRootRef = [[Firebase alloc] initWithUrl:@"https://loopapp.firebaseio.com"];
+    
+    [self queryFirebase];
+>>>>>>> origin/remo
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) queryFirebase{
+    
+    // Read data and react to changes
+    [_myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+    }];
+}
+
+-(void) sendMsg:(NSString*) message{
+    
+    // Create a reference to a Firebase database URL
+    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://loopapp.firebaseio.com"];
+    // Write data to Firebase
+    [myRootRef setValue:@"Do you have data? You'll love Firebase."];
 }
 
 #pragma mark - Table view delegate
