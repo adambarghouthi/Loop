@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface textView : UIView
+@interface textView : UIView<UITextViewDelegate>
 
 @property (strong, nonatomic) UITextView *tV;
 @property (strong, nonatomic) UIButton *sendBtn;

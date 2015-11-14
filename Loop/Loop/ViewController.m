@@ -8,10 +8,12 @@
 
 #import "ViewController.h"
 #import "TextCell.h"
+#import "textView.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) textView *msgTextView;
 
 @end
 
@@ -28,6 +30,8 @@
     [self.view addSubview:self.tableView];
     
     [self.tableView registerClass:[TextCell class] forCellReuseIdentifier:@"textCell"];
+    _msgTextView = [[textView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:_msgTextView];
 }
 
 - (void)didReceiveMemoryWarning {
