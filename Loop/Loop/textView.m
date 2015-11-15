@@ -11,7 +11,7 @@
 static NSInteger MAX_HEIGHT = 105;
 static NSInteger MIN_HEIGHT = 45;
 
-static NSInteger GROWTH_SIZE = 2;
+static NSInteger GROWTH_SIZE = 9;
 
 @implementation textView
 CGFloat _currentKeyboardHeight = 0.0f;
@@ -87,6 +87,11 @@ CGFloat previousHeigth;
     if (textHeigth > MIN_HEIGHT) {
         previousHeigth = textHeigth;
     }
+    [UIView animateWithDuration:0.25 animations:^
+     {
+         [self.tV setFrame:newTextViewFrame];
+         [self setFrame:newFrame];
+     }];
     
 }
 //- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText: (NSString *)text
