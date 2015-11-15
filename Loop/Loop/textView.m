@@ -98,7 +98,6 @@ CGRect previousRect;
          [self.tV setFrame:newTextViewFrame];
          [self setFrame:newFrame];
      }];
-
 }
 
 - (void) textViewDidBeginEditing:(UITextView*)textView {
