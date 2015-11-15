@@ -25,10 +25,11 @@ CGRect previousRect;
 //                   CGRectMake(15, height-60, 3*width/4, height/16)];
         self.tV.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15.0f];
         
-        self.sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.tV.frame.size.width + 15, 0, frame.size.width - self.tV.frame.size.width -30, frame.size.height)];
+        self.sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.tV.frame.size.width + 15, 0, frame.size.width - self.tV.frame.size.width -30, frame.size.height-10)];
         [self.sendBtn setTitle:@"send" forState:UIControlStateNormal];
         [self.sendBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//
+        [self.sendBtn addTarget:self action:@selector(sendMsg) forControlEvents:UIControlEventTouchUpInside];
+        
         [self addSubview:separatorView];
         [self addSubview:self.tV];
         [self addSubview:self.sendBtn];
@@ -44,6 +45,9 @@ CGRect previousRect;
     }
     
     return self;
+}
+-(void) sendMsg {
+    [self.tV endEditing:YES];
 }
 
 #pragma textView Delegate
@@ -105,7 +109,7 @@ CGRect previousRect;
 }
 
 
-#pragma keyboard events
+#pragma mark Keyboard events
 - (void)keyboardWillShow:(NSNotification*)notification {
     
     NSDictionary* d = [notification userInfo];
@@ -135,9 +139,5 @@ CGRect previousRect;
      }];
     
 }
-#pragma touch events
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.tV endEditing:YES];
-}
 @end

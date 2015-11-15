@@ -37,7 +37,7 @@
     [self.view addSubview:self.tableView];
     
     [self.tableView registerClass:[TextCell class] forCellReuseIdentifier:@"textCell"];
-    _msgTextView = [[textView alloc] initWithFrame:CGRectMake(0, height-50, width, height/16)];
+    _msgTextView = [[textView alloc] initWithFrame:CGRectMake(0, height-40, width, height/12)];
     [self.view addSubview:_msgTextView];
     
     self.array = @[@"Lorem Ipsum.", @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.", @"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.", @"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.", @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."];
@@ -110,5 +110,15 @@
 
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [_msgTextView.tV endEditing:YES];
+}
+
+//#pragma mark Touch events
+//
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+//    
+//    [_msgTextView.tV resignFirstResponder];
+//}
 
 @end
