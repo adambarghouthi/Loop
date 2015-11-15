@@ -18,6 +18,7 @@ CGFloat _currentKeyboardHeight = 0.0f;
 CGRect defaultFrame;
 CGRect defaultTextViewFrame;
 CGFloat previousHeigth;
+CGFloat textHeigth;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -44,12 +45,13 @@ CGFloat previousHeigth;
         [self addSubview:self.sendBtn];
         
         self.tV.delegate = self;
-        [self setBackgroundColor:[UIColor redColor]];
+        [self setBackgroundColor:[UIColor whiteColor]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
         previousHeigth = MIN_HEIGHT;
+        textHeigth = 0;
 
     }
     
@@ -61,8 +63,13 @@ CGFloat previousHeigth;
 
 #pragma textView Delegate
 -(void)textViewDidChange:(UITextView *)textView{
-    
-    CGFloat textHeigth = [self getLabelHeightFromString:textView.text];
+
+//    if (textHeigth < MAX_HEIGHT) {
+        textHeigth = [self getLabelHeightFromString:textView.text];
+//    }else{
+//        textHeigth = MAX_HEIGHT;
+//    }
+   
     CGRect newTextViewFrame = [self.tV frame];
     CGRect newFrame = [self frame];
     
@@ -77,14 +84,14 @@ CGFloat previousHeigth;
         newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
 
     }
-    else if (textHeigth < previousHeigth && textHeigth > MIN_HEIGHT){
+    else if (textHeigth < previousHeigth && textHeigth > 60 && textHeigth < MAX_HEIGHT){
         
         newTextViewFrame.size.height = textHeigth;
         newFrame.size.height = textHeigth;
         newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
         
     }
-    if (textHeigth > MIN_HEIGHT) {
+    if ( MIN_HEIGHT < textHeigth && textHeigth != 108 ) {
         previousHeigth = textHeigth;
     }
     [UIView animateWithDuration:0.25 animations:^
