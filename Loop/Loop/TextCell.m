@@ -7,43 +7,41 @@
 //
 
 #import "TextCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation TextCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
-    self = [super initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:reuseIdentifier];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
         CGFloat width = [UIScreen mainScreen].bounds.size.width;
         CGFloat height = [UIScreen mainScreen].bounds.size.height;
-        
-        self.view = [[UIView alloc] initWithFrame:CGRectMake(15, 7.5, width -30, height/9 - 15)];
+
+        self.view = [[UIView alloc] initWithFrame:CGRectMake(15, 7.5, width-30, height)];
         self.view.backgroundColor = [UIColor whiteColor];
-        self.view.clipsToBounds = YES;
         self.view.layer.cornerRadius = 5.0f;
         [self.contentView addSubview:self.view];
         
-        self.logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(7.5,7.5, self.view.frame.size.height - 15, self.view.frame.size.height - 15)];
-        self.logoImage.clipsToBounds = YES;
-        self.logoImage.layer.cornerRadius = (self.view.frame.size.height-15)/2;
-        [self.view addSubview:self.logoImage];
+        self.userImg = [[UIImageView alloc] initWithFrame:CGRectMake(width/2 - width/14, 15, width/7, width/7)];
+        self.userImg.clipsToBounds = YES;
+        self.userImg.layer.cornerRadius = width/14;
+        [self.contentView addSubview:self.userImg];
         
-        self.contentField = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.logoImage.frame) + 10, CGRectGetMinY(self.logoImage.frame), self.view.frame.size.width - self.logoImage.frame.size.width - 17.5, self.logoImage.frame.size.height)];
-        self.contentField.textColor = [UIColor lightGrayColor];
-        self.contentField.backgroundColor = [UIColor clearColor];
-        self.contentField.numberOfLines = 10000000;
-        self.contentField.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15.0f];
-        [self.view addSubview:self.contentField];
+//        self.nameDate = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.userImg.frame) + 5.0f, 15.0f, width - 20.0f - width/7, width/7)];
+//        self.nameDate.font = [UIFont fontWithName:@"Montserrat" size:width/21];
+//        self.nameDate.textColor = [UIColor whiteColor];
+//        [self addSubview:self.nameDate];
         
-        // add shadow to contentfield
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.view.bounds];
-        self.view.layer.masksToBounds = NO;
-        self.view.layer.shadowColor = [UIColor blackColor].CGColor;
-        self.view.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        self.view.layer.shadowOpacity = 0.1f;
-        self.view.layer.shadowPath = shadowPath.CGPath;
+        self.textView = [[UITextView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.userImg.frame) + 10.0f, width - 30.0f, 15.0f)];
+        self.textView.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15];
+        self.textView.textColor = [UIColor lightGrayColor];
+        self.textView.backgroundColor = [UIColor clearColor];
+        self.textView.scrollEnabled = NO;
+        self.textView.editable = NO;
+        self.textView.userInteractionEnabled = NO;
+        self.textView.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:self.textView];
+
     }
     
     return self;

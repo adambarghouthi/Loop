@@ -10,8 +10,8 @@
 
 @interface TextCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *contentField;
-@property (nonatomic, strong) UIImageView *logoImage;
-@property (nonatomic, strong) UIView *view;
+@property (strong, nonatomic) UIImageView *userImg;
+@property (strong, nonatomic) UITextView *textView;
+@property (strong, nonatomic) UIView *view;
 
 @end
