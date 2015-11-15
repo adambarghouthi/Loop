@@ -32,7 +32,7 @@ CGFloat textHeigth;
 //                   CGRectMake(15, height-60, 3*width/4, height/16)];
         self.tV.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15.0f];
         
-        self.sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.tV.frame.size.width + 15, 0, frame.size.width - self.tV.frame.size.width -30, frame.size.height-10)];
+        self.sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.tV.frame.size.width + 15, 0, frame.size.width - self.tV.frame.size.width -30, frame.size.height-12)];
         [self.sendBtn setTitle:@"send" forState:UIControlStateNormal];
         [self.sendBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self.sendBtn addTarget:self action:@selector(sendMsg) forControlEvents:UIControlEventTouchUpInside];
@@ -84,11 +84,11 @@ CGFloat textHeigth;
         newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
 
     }
-    else if (textHeigth < previousHeigth && textHeigth > 60 && textHeigth < MAX_HEIGHT){
+    else if (textHeigth < previousHeigth && textHeigth > 56 && textHeigth < MAX_HEIGHT){
         
         newTextViewFrame.size.height = textHeigth;
         newFrame.size.height = textHeigth;
-        newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
+        newFrame.origin.y =  newFrame.origin.y + 23;
         
     }
     if ( MIN_HEIGHT < textHeigth && textHeigth != 108 ) {
