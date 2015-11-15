@@ -10,9 +10,15 @@
 
 static NSInteger MAX_HEIGHT = 105;
 static NSInteger MIN_HEIGHT = 45;
+
+static NSInteger GROWTH_SIZE = 2;
+
 @implementation textView
 CGFloat _currentKeyboardHeight = 0.0f;
-CGRect previousRect;
+CGRect defaultFrame;
+CGRect defaultTextViewFrame;
+CGFloat previousHeigth;
+
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -30,18 +36,21 @@ CGRect previousRect;
         [self.sendBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self.sendBtn addTarget:self action:@selector(sendMsg) forControlEvents:UIControlEventTouchUpInside];
         
+        defaultFrame = self.frame;
+        defaultTextViewFrame = self.tV.frame;
+        
         [self addSubview:separatorView];
         [self addSubview:self.tV];
         [self addSubview:self.sendBtn];
         
         self.tV.delegate = self;
-        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setBackgroundColor:[UIColor redColor]];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+        previousHeigth = MIN_HEIGHT;
 
-        previousRect = CGRectZero;
     }
     
     return self;
@@ -51,29 +60,94 @@ CGRect previousRect;
 }
 
 #pragma textView Delegate
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText: (NSString *)text
-{
+-(void)textViewDidChange:(UITextView *)textView{
     
-    if([text isEqualToString:@"\n"]) // new line
-    {
-        [self updateTextFieldFrame:YES];
-    }else {
+    CGFloat textHeigth = [self getLabelHeightFromString:textView.text];
+    CGRect newTextViewFrame = [self.tV frame];
+    CGRect newFrame = [self frame];
+    
+    NSLog(@"textHeigth %f",textHeigth);
+    NSLog(@"previousHeigth %f",previousHeigth);
+    NSLog(@"--------------");
+    
+    if ( textHeigth > previousHeigth && textHeigth < MAX_HEIGHT) {
         
-        if([text isEqualToString:@""]) // backspace
-        {
-            textView.selectedRange = range;
-            NSString *selectedText = [textView textInRange:[textView selectedTextRange]];
-            
-            if ([selectedText isEqualToString:@"\n"]) { // line change
-                [self updateTextFieldFrame:NO];
-            }
-        }
-    }
+        newTextViewFrame.size.height = textHeigth;
+        newFrame.size.height = textHeigth;
+        newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
 
-    return YES;
+    }
+    else if (textHeigth < previousHeigth && textHeigth > MIN_HEIGHT){
+        
+        newTextViewFrame.size.height = textHeigth;
+        newFrame.size.height = textHeigth;
+        newFrame.origin.y =  newFrame.origin.y - (textHeigth-previousHeigth);
+        
+    }
+    if (textHeigth > MIN_HEIGHT) {
+        previousHeigth = textHeigth;
+    }
+    
+}
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText: (NSString *)text
+//{
+//    
+//    NSLog(@"string lenght: %lu",(unsigned long)textView.text.length);
+//
+//    long length = textView.text.length;
+//    
+////    if ([text isEqualToString:@""] && length == 0) {
+////        [self resetView];
+////    }
+//    
+//    if([text isEqualToString:@"\n"]) // new line
+//    {
+//        [self updateTextFieldFrame:YES];
+//    }else {
+//        
+//        if([text isEqualToString:@""]) // backspace
+//        {
+//            textView.selectedRange = range;
+//            NSString *selectedText = [textView textInRange:[textView selectedTextRange]];
+//            
+//            if ([selectedText isEqualToString:@"\n"])  { // line change
+//                [self updateTextFieldFrame:NO];
+//            }
+//        }
+//    }
+//
+//    return YES;
+//}
+
+// get label height for post to make dynamic cell in ViewPostTVC
+- (CGFloat)getLabelHeightFromString:( NSString*)inputText {
+    
+    CGSize constrainedSize = CGSizeMake(self.tV.frame.size.width, 9999);
+    
+    NSDictionary *attributesDictionary = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15.0f], NSFontAttributeName,nil];
+    
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:inputText attributes:attributesDictionary];
+    
+    CGRect requiredHeight = [string boundingRectWithSize:constrainedSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    
+    if (requiredHeight.size.width > self.tV.frame.size.width - 30) {
+        requiredHeight = CGRectMake(0,0, self.tV.frame.size.width - 30, requiredHeight.size.height);
+    }
+    
+    return requiredHeight.size.height;
 }
 
+-(void) resetView{
+    
+    CGRect newTextViewFrame = defaultTextViewFrame;
+    CGRect newFrame = defaultFrame;
+    
+    [UIView animateWithDuration:0.25 animations:^
+     {
+         [self.tV setFrame:defaultTextViewFrame];
+         [self setFrame:defaultFrame];
+     }];
+}
 -(void) updateTextFieldFrame:(BOOL) enlargeHeight{
     
     CGRect newTextViewFrame = [self.tV frame];
@@ -82,18 +156,18 @@ CGRect previousRect;
     if (enlargeHeight && self.tV.frame.size.height < MAX_HEIGHT){
         
         //TextView
-        newTextViewFrame.size.height = self.tV.frame.size.height + 9;
+        newTextViewFrame.size.height = self.tV.frame.size.height + GROWTH_SIZE;
         
         //TextView Container
-        newFrame.size.height = self.frame.size.height + 9;
-        newFrame.origin.y = self.frame.origin.y - 9;
+        newFrame.size.height = self.frame.size.height + GROWTH_SIZE;
+        newFrame.origin.y = self.frame.origin.y - GROWTH_SIZE;
 
     }else if (!enlargeHeight && self.tV.frame.size.height > MIN_HEIGHT){
         
-        newTextViewFrame.size.height = self.tV.frame.size.height - 9;
+        newTextViewFrame.size.height = self.tV.frame.size.height - GROWTH_SIZE;
 
-        newFrame.size.height = self.frame.size.height - 9;
-        newFrame.origin.y = self.frame.origin.y + 9;
+        newFrame.size.height = self.frame.size.height - GROWTH_SIZE;
+        newFrame.origin.y = self.frame.origin.y + GROWTH_SIZE;
 
     }
     
