@@ -22,19 +22,17 @@
         self.view.layer.cornerRadius = 5.0f;
         [self.contentView addSubview:self.view];
         
-        self.userImg = [[UIImageView alloc] initWithFrame:CGRectMake(width/2 - width/14, 15, width/7, width/7)];
+        self.userImg = [[UIButton alloc] initWithFrame:CGRectMake(width/2 - width/14, 15, width/7, width/7)];
         self.userImg.clipsToBounds = YES;
         self.userImg.layer.cornerRadius = width/14;
+        [self.userImg setBackgroundColor:[UIColor lightGrayColor]];
+        self.userImg.titleLabel.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:25.0];
+        [self.userImg setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.contentView addSubview:self.userImg];
-        
-//        self.nameDate = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.userImg.frame) + 5.0f, 15.0f, width - 20.0f - width/7, width/7)];
-//        self.nameDate.font = [UIFont fontWithName:@"Montserrat" size:width/21];
-//        self.nameDate.textColor = [UIColor whiteColor];
-//        [self addSubview:self.nameDate];
         
         self.textView = [[UITextView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.userImg.frame) + 10.0f, width - 30.0f, 15.0f)];
         self.textView.font = [UIFont fontWithName:@"AppleSDGothicNeo-Regular" size:15];
-        self.textView.textColor = [UIColor lightGrayColor];
+        self.textView.textColor = [UIColor darkGrayColor];
         self.textView.backgroundColor = [UIColor clearColor];
         self.textView.scrollEnabled = NO;
         self.textView.editable = NO;

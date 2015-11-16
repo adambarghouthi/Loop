@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface textView : UIView<UITextViewDelegate>
+@interface textView : UIView<UITextFieldDelegate>
 
-@property (strong, nonatomic) UITextView *tV;
+@property (strong, nonatomic) UITextField *tF;
 @property (strong, nonatomic) UIButton *sendBtn;
 
 @end

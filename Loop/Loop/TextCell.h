@@ -10,7 +10,7 @@
 
 @interface TextCell : UITableViewCell
 
-@property (strong, nonatomic) UIImageView *userImg;
+@property (strong, nonatomic) UIButton *userImg;
 @property (strong, nonatomic) UITextView *textView;
 @property (strong, nonatomic) UIView *view;
 

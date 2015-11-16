@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 
 @interface ViewController : UIViewController
 
+@property (strong, nonatomic) Firebase *myRootRef;
+@property (strong, nonatomic) Firebase *postingRef;
 
 @end
 
